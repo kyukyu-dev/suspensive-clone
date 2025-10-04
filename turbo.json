@@ -1,0 +1,30 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "ci:eslint": {
+      "dependsOn": ["build"]
+    },
+    "ci:test": {
+      "dependsOn": ["build"],
+      "outputs": ["coverage/**"]
+    },
+    "ci:type": {
+      "dependsOn": ["build"]
+    },
+    "clean": {
+      "cache": false
+    },
+    "dev": {
+      "dependsOn": ["build"],
+      "outputs": ["dist/**", "coverage/**"],
+      "cache": false,
+      "persistent": true
+    }
+  },
+  "globalEnv": ["NODE_ENV"]
+}
